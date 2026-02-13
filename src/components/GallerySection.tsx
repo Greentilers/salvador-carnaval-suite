@@ -1,28 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-import sala1 from "@/assets/CAB_7806.webp";
-import sala2 from "@/assets/CAB_7875.webp";
-import sala3 from "@/assets/CAB_9008.webp";
-import sala4 from "@/assets/CAB_9010.webp";
-import cozinha1 from "@/assets/CAB_8983.webp";
+import sala1 from "@/assets/CAB_8960.webp";
+import sala2 from "@/assets/CAB_9008.webp";
+import sala3 from "@/assets/CAB_8983.webp";
+import cozinha1 from "@/assets/CAB_9001.webp";
 import cozinha2 from "@/assets/CAB_9002.webp";
-import entrada1 from "@/assets/CAB_8994.webp";
-import entrada2 from "@/assets/CAB_8992.webp";
-import detalhe1 from "@/assets/CAB_7802.webp";
-import detalhe2 from "@/assets/CAB_8979.webp";
-import quarto1 from "@/assets/CAB_7876.webp";
-import quarto2 from "@/assets/CAB_7884.webp";
+import entrada1 from "@/assets/CAB_9005.webp";
+import entrada2 from "@/assets/CAB_8994.webp";
+import entrada3 from "@/assets/CAB_8992.webp";
+import banheiro1 from "@/assets/CAB_7841.webp";
+import banheiro2 from "@/assets/CAB_7842.webp";
+import quarto1 from "@/assets/CAB_8950.webp";
+import quarto2 from "@/assets/CAB_7827.webp";
+import quarto3 from "@/assets/CAB_7806.webp";
+import vista1 from "@/assets/CAB_7876.webp";
+import vista2 from "@/assets/CAB_7884.webp";
+import vista3 from "@/assets/CAB_7875.webp";
 
 const categories = [
-  { name: "Sala", images: [sala1, sala2, sala3, sala4] },
+  { name: "Entrada", images: [entrada1, entrada2, entrada3] },
+  { name: "Sala", images: [sala1, sala2, sala3]     },
   { name: "Cozinha", images: [cozinha1, cozinha2] },
-  { name: "Entrada", images: [entrada1, entrada2] },
-  { name: "Detalhes", images: [detalhe1, detalhe2] },
-  { name: "Quarto", images: [quarto1, quarto2] },
+  { name: "Quarto", images: [quarto1, quarto2, quarto3] },
+  { name: "Banheiro", images: [banheiro1, banheiro2] },
+  { name: "Vista", images: [vista1, vista2, vista3] },
 ];
 
 const allImages = categories.flatMap((c) => c.images);
+
+const captionByImage: Record<string, string> = {
+  [entrada1]: "Vista da entrada. Pendurador de camisa, frigobar e mesa com 2 cadeiras.",
+  [entrada2]: "Mesa com duas cadeiras, TV, luminária.",
+  [entrada3]: "Sofá-cama, mesa de apoio pro sofá, mesa com 2 cadeiras e TV.",
+  [sala1]: "Sofá-cama, mesa de apoio pro sofá, mesa com 2 cadeiras e TV.",
+  [sala2]: "Sofá-cama aberto, cortina blackout.",
+  [sala3]: "Sofá-cama.",
+  [cozinha1]: "Cozinha equipada.",
+  [cozinha2]: "Cozinha equipada com microondas, chaleira elétrica.",
+  [quarto1]: "Cama box tamanho casal, luminárias, cortina blackout.",
+  [quarto2]: "Armário de roupas estilo quarto de hotel.",
+  [quarto3]: "Cama box tamanho casal, e vista para a baía de todos os santos.",
+  [banheiro1]: "Banheiro equipado.",
+  [banheiro2]: "Box de vidro com chuveiro elétrico.",
+  [vista1]: "Vista para a baía de todos os santos.",
+  [vista2]: "Vista para a baía de todos os santos.",
+  [vista3]: "Vista para a baía de todos os santos.",
+};
 
 const GallerySection = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -36,6 +60,19 @@ const GallerySection = () => {
   const openLightbox = (img: string) => {
     setLightboxIndex(allImages.indexOf(img));
   };
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowLeft")
+        setLightboxIndex((prev) => (prev! - 1 + allImages.length) % allImages.length);
+      if (e.key === "ArrowRight")
+        setLightboxIndex((prev) => (prev! + 1) % allImages.length);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxIndex]);
 
   return (
     <section className="py-20 md:py-28 bg-background">
@@ -82,7 +119,7 @@ const GallerySection = () => {
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center">
           <button
             onClick={() => setLightboxIndex(null)}
             className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
@@ -100,6 +137,9 @@ const GallerySection = () => {
             alt="Foto ampliada"
             className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"
           />
+          <p className="mt-4 text-white/90 text-center text-sm md:text-base max-w-[90vw] px-4">
+            {captionByImage[allImages[lightboxIndex]] ?? ""}
+          </p>
           <button
             onClick={() => setLightboxIndex((lightboxIndex + 1) % allImages.length)}
             className="absolute right-4 text-white/70 hover:text-white"
