@@ -1,20 +1,24 @@
+import { useLanguage } from "@/context/LanguageContext";
+
 const CarnivalSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container max-w-4xl mx-auto px-6 text-center">
         <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8">
-          Viva o Carnaval raiz de Salvador
+          {t.carnival.title}
         </h2>
 
         <div className="space-y-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          <p>Fique próximo ao Circuito Campo Grande / Avenida.</p>
+          <p>{t.carnival.p1}</p>
           <p className="font-display text-2xl md:text-3xl font-bold text-foreground">
-            Curta o dia inteiro e volte caminhando.
+            {t.carnival.p2}
           </p>
-          <p>Nada de deslocamentos longos.</p>
-          <p>Nada de logística complicada.</p>
+          <p>{t.carnival.p3}</p>
+          <p>{t.carnival.p4}</p>
           <p className="text-foreground font-medium text-xl mt-6">
-            Aqui você aproveita mais e se preocupa menos.
+            {t.carnival.p5}
           </p>
         </div>
       </div>

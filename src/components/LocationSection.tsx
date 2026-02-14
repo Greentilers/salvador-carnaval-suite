@@ -1,24 +1,28 @@
 import { MapPin } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const LocationSection = () => {
+  const { t } = useLanguage();
+  const addresses = [
+    t.location.address1,
+    t.location.address2,
+    t.location.address3,
+    t.location.address4,
+  ];
+
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container max-w-6xl mx-auto px-6">
         <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground text-center mb-4">
-          Fique no coração do circuito tradicional
+          {t.location.title}
         </h2>
         <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-          Do Carnaval de Salvador
+          {t.location.subtitle}
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            {[
-              "Rua Areial de Baixo",
-              "Largo 2 de Julho",
-              "300 metros da Av. Carlos Gomes",
-              "Fácil acesso à Av. Sete, Castro Alves e Campo Grande",
-            ].map((text) => (
+            {addresses.map((text) => (
               <div key={text} className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent mt-1 shrink-0" />
                 <span className="text-foreground text-lg">{text}</span>
@@ -27,10 +31,10 @@ const LocationSection = () => {
 
             <div className="mt-8 p-6 bg-primary rounded-xl">
               <p className="font-display text-2xl md:text-3xl font-bold text-primary-foreground">
-                Aqui você faz tudo a pé.
+                {t.location.highlight}
               </p>
               <p className="text-primary-foreground/80 mt-2 font-body">
-                Sem depender de Uber. Sem enfrentar trânsito. Sem perder tempo.
+                {t.location.highlightDesc}
               </p>
             </div>
           </div>
@@ -44,7 +48,7 @@ const LocationSection = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização - Largo 2 de Julho"
+              title={t.location.mapTitle}
             />
           </div>
         </div>
