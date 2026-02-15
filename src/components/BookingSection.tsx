@@ -1,4 +1,4 @@
-import { MessageCircle, Calendar } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const getWhatsAppUrl = (message: string) =>
@@ -14,16 +14,9 @@ const BookingSection = () => {
           {t.booking.title}
         </h2>
 
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <Calendar className="w-6 h-6 text-accent" />
-          <span className="text-foreground text-lg font-medium">
-            {t.booking.dates}
-          </span>
-        </div>
-
         <div className="space-y-3 mb-10 text-muted-foreground text-lg">
-          <p>{t.booking.p1}</p>
-          <p className="font-semibold text-foreground">{t.booking.p2}</p>
+          <p className="font-semibold text-foreground">{t.booking.p1}</p>
+          <p>{t.booking.price}</p>
         </div>
 
         <a

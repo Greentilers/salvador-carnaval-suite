@@ -92,7 +92,7 @@ export const translations = {
         },
       ],
       exclusive:
-        "Disponível exclusivamente para 1 grupo durante todo o período do Carnaval.",
+        "Até 4 pessoas durante todo o período do Carnaval.",
     },
     carnival: {
       title: "Viva o Carnaval raiz de Salvador",
@@ -104,9 +104,8 @@ export const translations = {
     },
     booking: {
       title: "Garanta sua Reserva",
-      dates: "De sexta-feira 13/02/2026 até quarta-feira de cinzas",
-      p1: "Aluguel por pacote único.",
-      p2: "Disponível para apenas 1 grupo.",
+      p1: "Até 4 pessoas.",
+      price: "R$100,00 por pessoa por noite",
       cta: "Reservar via WhatsApp",
     },
     whatsapp: {
@@ -209,7 +208,7 @@ export const translations = {
         },
       ],
       exclusive:
-        "Exclusively available for 1 group during the entire Carnival period.",
+        "Up to 4 people during the entire Carnival period.",
     },
     carnival: {
       title: "Experience authentic Salvador Carnival",
@@ -221,9 +220,8 @@ export const translations = {
     },
     booking: {
       title: "Secure Your Reservation",
-      dates: "From Friday 13/02/2026 until Ash Wednesday",
-      p1: "Single package rental.",
-      p2: "Available for only 1 group.",
+      p1: "Up to 4 people.",
+      price: "R$100.00 per person per night",
       cta: "Book via WhatsApp",
     },
     whatsapp: {
@@ -326,7 +324,7 @@ export const translations = {
         },
       ],
       exclusive:
-        "Disponible exclusivamente para 1 grupo durante todo el período del Carnaval.",
+        "Hasta 4 personas durante todo el período del Carnaval.",
     },
     carnival: {
       title: "Vive el Carnaval auténtico de Salvador",
@@ -338,9 +336,8 @@ export const translations = {
     },
     booking: {
       title: "Asegura tu Reserva",
-      dates: "Del viernes 13/02/2026 hasta el miércoles de ceniza",
-      p1: "Alquiler por paquete único.",
-      p2: "Disponible para solo 1 grupo.",
+      p1: "Hasta 4 personas.",
+      price: "R$100,00 por persona por noche",
       cta: "Reservar por WhatsApp",
     },
     whatsapp: {
